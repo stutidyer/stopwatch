@@ -1,0 +1,16 @@
+body {
+  background-color: azure;
+}
+
+#timer {
+  font-family: "Courier New", Courier, monospace;
+  margin-top: 40px;
+  text-align: center;
+  text-size-adjust: 50px;
+}
+
+button {
+  width: 60px;
+  height: 40px;
+  border-top-style: double;
+}

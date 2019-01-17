@@ -15,12 +15,14 @@
   <body>
     <link rel="stylesheet" href="css/index.css" />
     <nav class="controls">
-      <h1 id="timer">00:00:00</h1>
-      <button id="start">Start</button> <button id="stop">Stop</button>
-      <button id="lap">Lap</button> <button id="clear">Reset</button>
-      <div class="stopwatch"></div>
-      <ul id="results"></ul>
+      <a href="#" class="button" onClick="stopwatch.start();">Start</a>
+      <a href="#" class="button" onClick="stopwatch.lap();">Lap</a>
+      <a href="#" class="button" onClick="stopwatch.stop();">Stop</a>
+      <a href="#" class="button" onClick="stopwatch.clear();">Clear</a>
+      <a href="#" class="button" onclick="stopwatch.history();">History</a>
     </nav>
+    <div class="stopwatch"></div>
+    <ul class="results"></ul>
     <script src="js/app.js"></script>
   </body>
 </html>

@@ -5,49 +5,47 @@
 
 html {
   background: aquamarine;
-  color: green;
+  color: darkgreen;
   font-family: Menlo;
 }
 
 .controls {
   position: fixed;
   text-align: center;
-  top: 3em;
+  top: 4em;
   width: 100%;
 }
-#timer {
-  font-size: 50px;
-  font-family: "Courier New", Courier, monospace;
-}
 
-button {
-  color: firebrick;
-  height: 30px;
-  width: 40px;
-  margin-top: 20px;
+.button {
+  border: 2px;
+  border-style: solid;
+  border-color: black;
+  color: darkgreen;
+  font-size: 40px;
+  margin: 0 0.5em;
   text-decoration: none;
 }
 
-button:first-child {
+.button:first-child {
   margin-left: 0;
 }
 
-button:last-child {
+.button:last-child {
   margin-right: 0;
 }
 
-button:hover {
+.button:hover {
   color: black;
 }
 
 .stopwatch {
-  font-size: 20vw;
+  font-size: 40px;
   height: 100%;
-  line-height: 100vh;
+  line-height: 70vh;
   text-align: center;
 }
 
-#results {
+.results {
   border-color: lime;
   list-style: none;
   margin: 0;

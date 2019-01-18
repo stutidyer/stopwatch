@@ -1,3 +1,4 @@
+let i = 0;
 class Stopwatch {
   constructor(display, results) {
     this.running = false;
@@ -104,25 +105,29 @@ function clearChildren(node) {
   while (node.lastChild) node.removeChild(node.lastChild);
 }
 function getHistory() {
-  /*if (stopwatch.running) {
-    stopwatch.times = [0, 0, 0];
-  // }*/
-  // const totalHistory = localStorage.getItem("historydata");
-  // let hi;
-  // if (totalHistory === null) {
-  //   hi = [];
-  // } else {
-  // }
   let storedData = localStorage.getItem("historydata");
   if (storedData) {
     const getHistoryData = JSON.parse(storedData);
-    console.log(getHistoryData);
+    //console.log(getHistoryData);
+    for (; i < 30; i = i + 3) {
+      let li = document.createElement("li");
+
+      li.innerText =
+        getHistoryData[i] +
+        ":" +
+        getHistoryData[i + 1] +
+        ":" +
+        getHistoryData[i + 2].toPrecision(2);
+      stopwatch.results.appendChild(li);
+      //  var d1 = getHistoryData[i];
+      //console.log(d1);
+    }
+
+    // var d1 = getHistoryData[1];
+    // console.log(d1);
   }
 
-  //let li = document.createElement("li");
   // for (let i = 0; i < 10; i++)
-  //   li.innerText = stopwatch.format(getHistoryData[i]);
-  // stopwatch.results.appendChild(li);
 }
 
 //console.log(JSON.parse(totalHistory));

@@ -27,35 +27,31 @@ class Stopwatch {
     this.results.appendChild(li);
     //it will store data in localstore
     let data = li.textContent;
+    //console.log(data);
     const maxHistoryLength = 10;
     const history = JSON.parse(localStorage.getItem("historydata") || "[]");
     const isHistoryMaxed = history.length === maxHistoryLength;
     const workingHistory = isHistoryMaxed ? history.slice(1) : history;
     const updatedHistory = workingHistory.concat(times);
     localStorage.setItem("historydata", JSON.stringify(updatedHistory));
-    let totalHistory = localStorage.getItem("historydata");
-    console.log(totalHistory);
   }
-  // history() {
-
-  // }
 
   stop() {
     this.running = false;
     this.time = null;
   }
 
-  // restart() {
-  //   if (!this.time) this.time = performance.now();
-  //   if (!this.running) {
-  //     this.running = true;
-  //     requestAnimationFrame(this.step.bind(this));
-  //   }
-  //   this.reset();
-  // }
-
   clear() {
     clearChildren(this.results);
+  }
+
+  restart() {
+    if (!this.time) this.time = performance.now();
+    if (!this.running) {
+      this.running = true;
+      requestAnimationFrame(this.step.bind(this));
+    }
+    this.reset();
   }
 
   step(timestamp) {
@@ -103,7 +99,10 @@ function pad0(value, count) {
 function clearChildren(node) {
   while (node.lastChild) node.removeChild(node.lastChild);
 }
-
+function getHistory() {
+  let totalHistory = localStorage.getItem("historydata");
+  console.log(totalHistory);
+}
 let stopwatch = new Stopwatch(
   document.querySelector(".stopwatch"),
   document.querySelector(".results")

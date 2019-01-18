@@ -43,6 +43,10 @@ class Stopwatch {
 
   clear() {
     clearChildren(this.results);
+    //reset();
+    let time = this.times;
+    time = [0, 0, 0];
+    this.display.innerText = this.format(time);
   }
 
   restart() {
@@ -100,9 +104,38 @@ function clearChildren(node) {
   while (node.lastChild) node.removeChild(node.lastChild);
 }
 function getHistory() {
-  let totalHistory = localStorage.getItem("historydata");
-  console.log(totalHistory);
+  /*if (stopwatch.running) {
+    stopwatch.times = [0, 0, 0];
+  // }*/
+  // const totalHistory = localStorage.getItem("historydata");
+  // let hi;
+  // if (totalHistory === null) {
+  //   hi = [];
+  // } else {
+  // }
+  let storedData = localStorage.getItem("historydata");
+  if (storedData) {
+    const getHistoryData = JSON.parse(storedData);
+    console.log(getHistoryData);
+  }
+
+  //let li = document.createElement("li");
+  // for (let i = 0; i < 10; i++)
+  //   li.innerText = stopwatch.format(getHistoryData[i]);
+  // stopwatch.results.appendChild(li);
 }
+
+//console.log(JSON.parse(totalHistory));
+window.addEventListener("beforeunload", function(event) {
+  localStorage.setItem("refreshdata", JSON.stringify(stopwatch.times));
+  event.returnValue = storedData;
+});
+
+window.addEventListener("load", function(event) {
+  let storedData = JSON.parse(localStorage.getItem("refreshdata"));
+  console.log(storedData);
+  stopwatch.display.innerText = stopwatch.format(storedData);
+});
 let stopwatch = new Stopwatch(
   document.querySelector(".stopwatch"),
   document.querySelector(".results")

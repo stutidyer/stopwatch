@@ -119,15 +119,8 @@ function getHistory() {
         ":" +
         getHistoryData[i + 2].toPrecision(2);
       stopwatch.results.appendChild(li);
-      //  var d1 = getHistoryData[i];
-      //console.log(d1);
     }
-
-    // var d1 = getHistoryData[1];
-    // console.log(d1);
   }
-
-  // for (let i = 0; i < 10; i++)
 }
 
 //console.log(JSON.parse(totalHistory));
@@ -138,8 +131,47 @@ window.addEventListener("beforeunload", function(event) {
 
 window.addEventListener("load", function(event) {
   let storedData = JSON.parse(localStorage.getItem("refreshdata"));
-  console.log(storedData);
   stopwatch.display.innerText = stopwatch.format(storedData);
+  const dd = new Date();
+  const seconds = dd.getSeconds();
+  const minutes = dd.getMinutes();
+  const hours = dd.getHours();
+  localStorage.setItem("openSeconds", JSON.stringify(seconds));
+  localStorage.setItem("openMinutes", JSON.stringify(minutes));
+  localStorage.setItem("openHours", JSON.stringify(hours));
+  // to display sync time ()
+  let s =
+    JSON.parse(localStorage.getItem("openSeconds")) -
+    JSON.parse(localStorage.getItem("closeSeconds"));
+  let m =
+    JSON.parse(localStorage.getItem("openMinutes")) -
+    JSON.parse(localStorage.getItem("closeMinutes"));
+  let h =
+    JSON.parse(localStorage.getItem("openHours")) -
+    JSON.parse(localStorage.getItem("closeHours"));
+
+  let currSecond =
+    JSON.parse(localStorage.getItem("stopwatchCloseTime[0]")) + s;
+  let currMinute =
+    JSON.parse(localStorage.getItem("stopwatchCloseTime[1]")) + m;
+  let currHours = JSON.parse(localStorage.getItem("stopwatchCloseTime[2]")) + h;
+
+  //console.log(currSecond);
+  //console.log(currMinute);
+
+  //console.log(localStorage.getItem("closeTime"));
+});
+
+window.addEventListener("unload", function(event) {
+  const d = new Date();
+  const second = d.getSeconds();
+  const minute = d.getMinutes();
+  const hours = d.getHours();
+  //console.log(time);
+  localStorage.setItem("stopwatchCloseTime", JSON.stringify(stopwatch.times));
+  localStorage.setItem("closeSeconds", JSON.stringify(second));
+  localStorage.setItem("closeMinutes", JSON.stringify(minute));
+  localStorage.setItem("closeHours", JSON.stringify(hours));
 });
 let stopwatch = new Stopwatch(
   document.querySelector(".stopwatch"),
